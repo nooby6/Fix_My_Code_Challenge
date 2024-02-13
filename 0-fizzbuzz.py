@@ -1,39 +1,30 @@
 #!/usr/bin/python3
-""" FizzBuzz
-"""
-import sys
-
-
 def fizzbuzz(n):
-    """
-    FizzBuzz function prints numbers from 1 to n separated by a space.
-
-    - For multiples of three print "Fizz" instead of the number and for
-      multiples of five print "Buzz".
-    - For numbers which are multiples of both three and five print "FizzBuzz".
-    """
-    if n < 1:
-        return
-
-    tmp_result = []
+    """Prints the numbers from 1 to n, but for multiples of three, print "Fizz"
+    instead of the number and for the multiples of five, print "Buzz".
+    For numbers which are multiples of both three and five, print "FizzBuzz"."""
     for i in range(1, n + 1):
-        if (i % 3) == 0:
-            tmp_result.append("Fizz")
-        elif (i % 3) == 0 and (i % 5) == 0:
-            tmp_result.append("FizzBuzz")
-        elif (i % 5) == 0:
-            tmp_result.append("Buzz")
+        if i % 3 == 0 and i % 5 == 0:
+            print("FizzBuzz", end=" ")
+        elif i % 3 == 0:
+            print("Fizz", end=" ")
+        elif i % 5 == 0:
+            print("Buzz", end=" ")
         else:
-            tmp_result.append(str(i))
-    print(" ".join(tmp_result))
+            print(i, end=" ")
 
+if __name__ == "__main__":
+    import sys
 
-if __name__ == '__main__':
-    if len(sys.argv) <= 1:
-        print("Missing number")
+    if len(sys.argv) != 2:
         print("Usage: ./0-fizzbuzz.py <number>")
-        print("Example: ./0-fizzbuzz.py 89")
         sys.exit(1)
 
-    number = int(sys.argv[1])
-    fizzbuzz(number)
+    try:
+        n = int(sys.argv[1])
+    except ValueError:
+        print("Please provide a valid number")
+        sys.exit(1)
+
+    fizzbuzz(n)
+
